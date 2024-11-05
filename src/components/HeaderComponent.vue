@@ -74,12 +74,16 @@ header {
     width: 100%;
     display: flex;
     justify-content: center;
+    padding-bottom: 1rem;
     label {
       display: flex;
       flex-direction: row;
       align-items: center;
       span {
         cursor: pointer;
+      }
+      input {
+        height: 100%;
       }
     }
   }
