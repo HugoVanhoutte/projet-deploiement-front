@@ -1,7 +1,14 @@
 <script setup>
 import { ref } from 'vue';
+import { useRouter } from 'vue-router';
 
+const router = useRouter();
 const isMenuDisplayed = ref(false);
+const isSearchBarDisplayed = ref(false);
+
+const toggleSearchBar = () => {
+  isSearchBarDisplayed.value = !isSearchBarDisplayed.value;
+};
 
 const toggleMenu = () => {
   isMenuDisplayed.value = !isMenuDisplayed.value;
@@ -12,8 +19,14 @@ const toggleMenu = () => {
 <header>
   <div class="buttons">
     <button class="material-symbols-outlined menu" @click="toggleMenu">menu</button>
-    <button class="logo"></button>
-    <button class="material-symbols-outlined search">search</button>
+    <button class="logo" @click="router.push('/')"></button>
+    <button class="material-symbols-outlined search" @click="toggleSearchBar">search</button>
+  </div>
+  <div class="search-bar" v-if="isSearchBarDisplayed">
+    <label for="search-bar">
+      <input id="search-bar" type="text">
+      <span class="material-symbols-outlined">search</span>
+    </label>
   </div>
   <nav v-if="isMenuDisplayed">
     <ul>
@@ -55,6 +68,19 @@ header {
       background-repeat: no-repeat;
       background-position: center center;
       background-size: contain;
+    }
+  }
+  .search-bar {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    label {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      span {
+        cursor: pointer;
+      }
     }
   }
   nav {
