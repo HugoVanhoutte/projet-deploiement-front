@@ -67,6 +67,9 @@ const toggleTitle = () => {
   transition: .3s;
   overflow: hidden;
   border-radius: .25em;
+  @media (min-width: 1025px) {
+    margin: 2dvw 0;
+  }
   .image {
     display: flex;
     flex-direction: column;
