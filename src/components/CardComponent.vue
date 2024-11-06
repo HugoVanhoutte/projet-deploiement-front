@@ -65,6 +65,8 @@ const toggleTitle = () => {
   box-shadow: 2px 2px 3px 1px #cccccc;
   margin: 2dvw;
   transition: .3s;
+  overflow: hidden;
+  border-radius: .25em;
   .image {
     display: flex;
     flex-direction: column;
@@ -90,7 +92,7 @@ const toggleTitle = () => {
       transition: .3s ease;
       h1 {
         color: white;
-        padding: .15rem;
+        padding: .5rem;
         max-width: 100%;
         word-break: break-word;
         font-size: 1.2rem;
