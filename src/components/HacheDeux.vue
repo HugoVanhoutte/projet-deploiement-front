@@ -21,6 +21,10 @@ h2 {
     margin: 2rem 0;
     margin-left: 2dvw; /* Même marge à gauche que la Card */
     font-weight: 500;
-    font-size: 20px
+    font-size: 20px;
+
+    @media (min-width: 1025px) {
+        margin-left: 0; /* Même marge à gauche que la Card */
+    }
   }
   </style>

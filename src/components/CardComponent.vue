@@ -62,7 +62,7 @@ const toggleTitle = () => {
   max-width: 25rem;
   min-width: 15rem;
   height: 15rem;
-  box-shadow: 2px 2px 3px 1px #cccccc;
+  box-shadow: $materialShadow;
   margin: 2dvw;
   transition: .3s;
   overflow: hidden;
