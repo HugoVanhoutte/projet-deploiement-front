@@ -45,7 +45,7 @@ const toggleMenu = () => {
 @import '@/assets/variables';
 header {
   width: 100dvw;
-  height: auto;
+  height: fit-content;
   box-shadow: 0 3px 10px 2px #cccccc;
   margin-bottom: .5rem;
   .buttons {
@@ -62,8 +62,9 @@ header {
       padding: 1rem;
     }
     .logo {
-      width: 60%;
-      height: 100%;
+      padding: 0;
+      height: 5rem;
+      width: 10rem;
       background-image: url("@/assets/color-transparent.png");
       background-repeat: no-repeat;
       background-position: center center;

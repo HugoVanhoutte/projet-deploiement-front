@@ -1,5 +1,8 @@
 <script setup>
+import { ref } from 'vue';
+
 const props = defineProps(['title', 'image', 'id']);
+const isTitleFull = ref(false);
 
 const copyLinkToClipBoard = () => {
   navigator.clipboard.writeText(`${window.location.origin}/ads/${props.id}`);
@@ -13,12 +16,25 @@ const addAdToFavorites = () => {
 const reportAd = () => {
   // TODO
 };
+
+const toggleTitle = () => {
+  isTitleFull.value = !isTitleFull.value;
+};
+
 </script>
 
 <template>
   <section class="ad">
     <main class="image">
-      <h1>{{ props.title }}</h1>
+      <div
+        class="overlay"
+        @mouseenter="toggleTitle"
+        @focusin="toggleTitle"
+        @mouseleave="toggleTitle"
+        @focusout="toggleTitle"
+      >
+        <h1 :class="isTitleFull ? 'big' : 'small' ">{{ props.title }}</h1>
+      </div>
     </main>
     <aside>
       <div class="buttons">
@@ -39,12 +55,15 @@ const reportAd = () => {
 <style scoped lang="scss">
 @import '@/assets/variables';
 .ad {
+  font-family: $body-font;
   display: flex;
   flex-direction: column;
-  width: 15rem;
+  width: 45dvw;
+  max-width: 25rem;
+  min-width: 15rem;
   height: 15rem;
   box-shadow: 2px 2px 3px 1px #cccccc;
-  margin: 1rem;
+  margin: 2dvw;
   transition: .3s;
   .image {
     display: flex;
@@ -55,20 +74,42 @@ const reportAd = () => {
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+    object-fit: contain;
     height: 80%;
     width: 100%;
     justify-content: flex-end;
     align-items: flex-start;
     transition: .3s ease;
-    h1 {
-      margin: .5rem;
+    .overlay {
       background-color: #00000075;
-      color: white;
-      padding: .15rem;
-      max-width: 100%;
-      word-break: break-word;
-      font-size: 1.3rem;
+      width: 100%;
+      height: 15%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      transition: .3s ease;
+      h1 {
+        color: white;
+        padding: .15rem;
+        max-width: 100%;
+        word-break: break-word;
+        font-size: 1.2rem;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+      }
     }
+    .overlay:hover {
+      height: 100%;
+    }
+    h1.small {
+      overflow: clip;
+      white-space: nowrap;
+    }
+    h1.big {
+      overflow: hidden;
+      white-space: wrap;
+    };
     h1:first-letter {
       text-transform: uppercase;
     }
@@ -76,19 +117,20 @@ const reportAd = () => {
   aside {
     display: flex;
     flex-direction: row;
-    justify-content: flex-end;
     width: 100%;
     height: 20%;
     .buttons {
-      width: 45%;
+      width: 100%;
       display: flex;
       flex-direction: row;
-      justify-content: space-between;
+      justify-content: flex-end;
       button {
+        font-size: 2.25rem;
         border: none;
         background: none;
         cursor: pointer;
         transition: .5s ease;
+        margin: 0 2dvw;
       }
       button:hover {
         transform: scale(1.1);
