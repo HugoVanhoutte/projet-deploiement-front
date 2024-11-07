@@ -1,5 +1,6 @@
 <template>
-
+  <div class=background>
+  </div>
   <form @submit.prevent="handleSubmit">
     <div class="title">
       <h2>Bonjour !</h2>
@@ -49,8 +50,20 @@ const handleSubmit = () => {
 <style scoped lang="scss">
 @import '../assets/variables.scss';
 
-
+.background{
+  background-image: url('../assets/loginbackground.jpg');
+  height: 88vh;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
 form {
+  z-index: 0;
+  position: absolute;
+  opacity: 0.95;
+  top:20%;
+  left: 50%;
+  transform: translate(-50%,0);
   max-width: 600px;
   margin: auto;
   padding: 1.5rem;
@@ -119,9 +132,6 @@ form {
   .button-submit {
     display: flex;
     justify-content: center;
-  }
-  .create-account {
-    max-width: 400px;
   }
   .create-account p{
     text-align: center;
