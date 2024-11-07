@@ -7,40 +7,8 @@ import HacheDeux from '@/components/HacheDeux.vue';
 
 <template>
   <div>
-    <CallToActionButton />
+    <CallToActionButton/>
     <HacheDeux title="Top Annonces"/>
-    <CardComponent
-    title="Meuble télévision en bois avec plein de tiroirs plein de  mots de fou bla bla blab
-    yufvod zedfzeffza ezfazefazefzef zefzeferhtrsdg"
-    />
-    <CardComponent
-    title="Meuble télévision en bois avec plein de tiroirs plein de  mots de fou bla bla blab
-    yufvod zedfzeffza ezfazefazefzef zefzeferhtrsdg"
-    />
-    <CardComponent
-    title="Meuble télévision en bois avec plein de tiroirs plein de  mots de fou bla bla blab
-    yufvod zedfzeffza ezfazefazefzef zefzeferhtrsdg"
-    />
-    <CardComponent
-    title="Meuble télévision en bois avec plein de tiroirs plein de  mots de fou bla bla blab
-    yufvod zedfzeffza ezfazefazefzef zefzeferhtrsdg"
-  />
-  <CardComponent
-    title="Meuble télévision en bois avec plein de tiroirs plein de  mots de fou bla bla blab
-    yufvod zedfzeffza ezfazefazefzef zefzeferhtrsdg"
-    />
-    <CardComponent
-    title="Meuble télévision en bois avec plein de tiroirs plein de  mots de fou bla bla blab
-    yufvod zedfzeffza ezfazefazefzef zefzeferhtrsdg"
-    />
-    <CardComponent
-    title="Meuble télévision en bois avec plein de tiroirs plein de  mots de fou bla bla blab
-    yufvod zedfzeffza ezfazefazefzef zefzeferhtrsdg"
-    />
-    <CardComponent
-    title="Meuble télévision en bois avec plein de tiroirs plein de  mots de fou bla bla blab
-    yufvod zedfzeffza ezfazefazefzef zefzeferhtrsdg"
-    />
   </div>
 </template>
 

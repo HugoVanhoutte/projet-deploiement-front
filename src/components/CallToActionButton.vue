@@ -14,12 +14,10 @@ import { defineProps } from 'vue';
 const props = defineProps({
   title: {
     type: String,
-    required: true,
     default: 'Titre du Call',
   },
   name: {
     type: String,
-    required: true,
     default: 'Nom du bouton',
   },
   backgroundColor: {
