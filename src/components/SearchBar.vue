@@ -41,6 +41,7 @@
   justify-content: center;
   align-items: center;
   transition: 1s;
+  z-index: 5;
   .close-button {
     position: absolute;
     top: .5rem;

@@ -19,6 +19,7 @@
     position: fixed;
     height: 100%;
     width: 100%;
+    z-index: 5;
     ul {
       width: 80%;
       height: 100%;
