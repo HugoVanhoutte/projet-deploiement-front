@@ -1,6 +1,5 @@
 <template>
   <div class="background">
-  </div>
   <form @submit.prevent="handleSubmit">
     <div class="title">
       <h2>Bonjour !</h2>
@@ -27,6 +26,7 @@
       </p>
     </div>
   </form>
+</div>
 </template>
 
 <script setup>
@@ -52,7 +52,7 @@ const password = ref('');
 
 .background{
   background-image: url('../assets/loginbackground.jpg');
-  height: 88vh;
+  min-height:92vh;
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
