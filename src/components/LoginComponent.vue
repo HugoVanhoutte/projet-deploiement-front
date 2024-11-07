@@ -1,5 +1,5 @@
 <template>
-  <div class=background>
+  <div class="background">
   </div>
   <form @submit.prevent="handleSubmit">
     <div class="title">
@@ -39,12 +39,12 @@ const email = ref('');
 const password = ref('');
 
 // Fonction de soumission du formulaire
-const handleSubmit = () => {
-  console.log('Email:', email.value);
-  console.log('Password:', password.value);
+// const handleSubmit = () => {
+//   console.log('Email:', email.value);
+//   console.log('Password:', password.value);
 
   // Logique de connexion ou validation des données à ajouter ici
-};
+// };
 </script>
 
 <style scoped lang="scss">

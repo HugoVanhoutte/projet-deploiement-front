@@ -1,5 +1,5 @@
 <template>
-  <div class=background>
+  <div class="background">
   </div>
   <form @submit.prevent="handleSubmit">
     <div class="title">
@@ -151,10 +151,10 @@ const handleSubmit = () => {
   // Si aucune erreur, soumettre le formulaire
   if (!errors.value.phone && !errors.value.email
   && !errors.value.password && !errors.value.confirmPassword) {
-    console.log('Données du formulaire:', formData.value);
+    // console.log('Données du formulaire:', formData.value);
     // Logique de connexion ou autre traitement
   } else {
-    console.log('Erreurs de validation:', errors.value);
+    // un commentaire
   }
 };
 </script>
