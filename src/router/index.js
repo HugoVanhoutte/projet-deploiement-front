@@ -16,6 +16,11 @@ const routes = [
     name: 'register',
     component: () => import('@/views/SubscribeView.vue'),
   },
+  {
+    path: '/test',
+    name: 'test',
+    component: () => import('@/views/testView.vue'),
+  },
 ];
 
 const router = createRouter({
