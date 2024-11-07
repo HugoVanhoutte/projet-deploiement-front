@@ -2,6 +2,7 @@
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 import SearchBar from '@/components/SearchBar.vue';
+import MenuMobile from '@/components/MenuMobile.vue';
 
 const router = useRouter();
 const isMenuDisplayed = ref(false);
@@ -9,19 +10,21 @@ const isSearchBarDisplayed = ref(false);
 
 const toggleSearchBar = () => {
   isSearchBarDisplayed.value = !isSearchBarDisplayed.value;
+  isMenuDisplayed.value = false;
 };
 
 const toggleMenu = () => {
   isMenuDisplayed.value = !isMenuDisplayed.value;
+  isSearchBarDisplayed.value = false;
 };
 
 // Transitions
-const beforeEnter = (el) => {
+const beforeEnterFade = (el) => {
   // eslint-disable-next-line no-param-reassign
   el.style.opacity = 0;
 };
 
-const enter = (el, done) => {
+const enterFade = (el, done) => {
   // eslint-disable-next-line no-unused-expressions
   el.offsetHeight; // Trigger reflow
   // eslint-disable-next-line no-param-reassign
@@ -31,18 +34,44 @@ const enter = (el, done) => {
   done();
 };
 
-const leave = (el, done) => {
+const leaveFade = (el, done) => {
   // eslint-disable-next-line no-param-reassign
   el.style.transition = 'opacity .3s';
   // eslint-disable-next-line no-param-reassign
   el.style.opacity = 0;
+  el.addEventListener('transitionend', done);
+};
+
+const beforeEnterSlide = (el) => {
+  // eslint-disable-next-line no-param-reassign
+  el.style.transform = 'translateX(-100%)';
+};
+
+const enterSlide = (el, done) => {
+  // eslint-disable-next-line no-unused-expressions
+  el.offsetHeight; // Trigger reflow
+  // eslint-disable-next-line no-param-reassign
+  el.style.transition = 'transform .3s';
+  // eslint-disable-next-line no-param-reassign
+  el.style.transform = 'translateX(0)';
   done();
+};
+
+const leaveSlide = (el, done) => {
+  // eslint-disable-next-line no-param-reassign
+  el.style.transition = 'transform .3s';
+  // eslint-disable-next-line no-param-reassign
+  el.style.transform = 'translateX(-100%)';
+  el.addEventListener('transitionend', done);
 };
 </script>
 
 <template>
-  <transition name="fade" @before-enter="beforeEnter" @enter="enter" @leave="leave">
+  <transition name="fade" @before-enter="beforeEnterFade" @enter="enterFade" @leave="leaveFade">
     <Search-bar v-if='isSearchBarDisplayed' @toggleSearchBar="toggleSearchBar"/>
+  </transition>
+  <transition name="slide" @before-enter="beforeEnterSlide" @enter="enterSlide" @leave="leaveSlide">
+    <MenuMobile v-if="isMenuDisplayed" @toggleMenu="toggleMenu"/>
   </transition>
 <header>
   <div class="buttons">
@@ -50,16 +79,6 @@ const leave = (el, done) => {
     <button class="logo" @click="router.push('/')"></button>
     <button class="material-symbols-outlined search" @click="toggleSearchBar">search</button>
   </div>
-  <nav v-if="isMenuDisplayed">
-    <ul>
-      <li>Test</li>
-      <li>Test</li>
-      <li>Test</li>
-      <li>Test</li>
-      <li>Test</li>
-      <li>Test</li>
-    </ul>
-  </nav>
 </header>
 </template>
 
@@ -101,6 +120,7 @@ header {
         font-family: $body-font;
       }
     }
+    transform: translateX(-100%);
   }
 }
 /* CSS transitions */
@@ -109,5 +129,13 @@ header {
 }
 .fade-enter, .fade-leave-to {
   opacity: 0;
+}
+
+.slide-enter-active, .slide-leave-active {
+  transition: transform .3s;
+}
+
+.slide-enter, .slide-leave-to {
+  transform: translateX(0);
 }
 </style>
