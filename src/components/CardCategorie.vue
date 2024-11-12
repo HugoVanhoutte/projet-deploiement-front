@@ -4,11 +4,7 @@
             :key="key"
             :style="`background-image:url('${card.image}')`"
             class="card">
-            <!-- <div> -->
-                <!-- <img :src="card.image ? card.image : require('../assets/logo.png')"
-                alt="Image de {{ card.name }}"> -->
-                <p>{{ card.name }}</p>
-            <!-- </div> -->
+            <p>{{ card.name }}</p>
         </div>
     </div>
 </template>
@@ -61,6 +57,7 @@ const categorie = ref({
     width: 70%;
     justify-content: center;
     gap: 0.5rem;
+    cursor: pointer;
 
     .card {
       box-sizing: border-box;
