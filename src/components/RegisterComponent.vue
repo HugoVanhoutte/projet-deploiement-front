@@ -111,8 +111,7 @@ const errors = ref({
   confirmPassword: '',
 });
 
-// Fonction de soumission du formulaire avec validation
-const handleSubmit = () => {
+const handleSubmit = async () => {
   // Réinitialiser les erreurs
   errors.value = {
     phone: '',
@@ -149,13 +148,34 @@ const handleSubmit = () => {
     errors.value.password = 'Le mot de passe doit contenir au moins 12 caractères.';
   }
 
-  // Si aucune erreur, soumettre le formulaire
-  if (!errors.value.phone && !errors.value.email
-  && !errors.value.password && !errors.value.confirmPassword) {
-    // console.log('Données du formulaire:', formData.value);
-    // Logique de connexion ou autre traitement
+  // Vérifier les erreurs avant d'envoyer la requête
+  const hasErrors = Object.values(errors.value).some((error) => error !== '');
+
+  if (!hasErrors) {
+    try {
+      // Préparation des données à envoyer
+      const submittedData = formData.value;
+
+      // Envoi des données avec fetch
+      const response = await fetch('http://localhost:3000/api/users/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(submittedData),
+      });
+
+      if (!response.ok) {
+        throw new Error(`Erreur HTTP ! Statut: ${response.status}`);
+      }
+
+      const data = await response.json();
+      console.log('Compte créé avec succès:', data);
+    } catch (error) {
+      console.error('Erreur lors de la création de compte:', error);
+    }
   } else {
-    // un commentaire
+    console.log('Erreurs de validation:', errors.value);
   }
 };
 </script>
