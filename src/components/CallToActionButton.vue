@@ -1,32 +1,43 @@
 <template>
     <div class="container-cta" :style="{ backgroundColor: props.backgroundColor }">
-        <div class="container-text">{{ props.title }}</div>
-        <div class="container-button"><button>
-            <span class="material-symbols-outlined">
-                add_circle</span>{{ props.name }}
-            </button>
-            </div>
+      <div class="container-text">{{ props.title }}</div>
+      <div class="container-button">
+        <button @click="goto">
+          <span class="material-symbols-outlined">
+              add_circle
+          </span>{{ props.name }}
+        </button>
+      </div>
     </div>
 </template>
 <script setup>
 import { defineProps } from 'vue';
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
 
 const props = defineProps({
   title: {
     type: String,
-    required: true,
     default: 'Titre du Call',
   },
   name: {
     type: String,
-    required: true,
     default: 'Nom du bouton',
   },
   backgroundColor: {
     type: String,
     default: '$cornsilk',
   },
+  link: {
+    type: String,
+    required: true,
+  },
 });
+
+const goto = () => {
+  router.push(props.link);
+};
 
 </script>
 <style scoped lang="scss">

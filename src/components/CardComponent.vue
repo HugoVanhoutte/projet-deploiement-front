@@ -1,7 +1,21 @@
 <script setup>
 import { ref } from 'vue';
 
-const props = defineProps(['title', 'image', 'id']);
+const props = defineProps({
+  title: {
+    type: String,
+    required: true,
+  },
+  id: {
+    type: Number,
+    required: true,
+  },
+  image: {
+    type: String,
+    required: false,
+    default: 'url(\'../assets/test.jpg\')',
+  },
+});
 const isTitleFull = ref(false);
 
 const copyLinkToClipBoard = () => {
@@ -68,14 +82,12 @@ const toggleTitle = () => {
   overflow: hidden;
   border-radius: .25em;
   @media (min-width: 1025px) {
-    margin: 2dvw 0;
+    margin: 1dvw;
   }
   .image {
     display: flex;
     flex-direction: column;
-    background-image: url('../assets/test.jpg');
-    // background-image: v-bind('props.image');
-    // TODO: gérer les images
+    background-image: url('../../public/img/test.jpg');
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -136,6 +148,9 @@ const toggleTitle = () => {
         cursor: pointer;
         transition: .5s ease;
         margin: 0 2dvw;
+        @media screen and (min-width: 1025px) {
+          margin: 0 1dvw;
+        }
       }
       button:hover {
         transform: scale(1.1);

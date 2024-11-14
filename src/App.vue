@@ -41,6 +41,11 @@ table {
   border-collapse: collapse;
   border-spacing: 0;
 }
+
+.grid {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+}
 </style>
 <script setup>
 import HeaderComponent from '@/components/HeaderComponent.vue';
