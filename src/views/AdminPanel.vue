@@ -8,7 +8,6 @@ const selected = ref('users');
 
 const changeSelected = (value) => {
   selected.value = value;
-  console.log(selected.value);
 };
 </script>
 
