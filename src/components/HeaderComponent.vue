@@ -23,7 +23,6 @@ const beforeEnterFade = (el) => {
   // eslint-disable-next-line no-param-reassign
   el.style.opacity = 0;
 };
-
 const enterFade = (el, done) => {
   // eslint-disable-next-line no-unused-expressions
   el.offsetHeight; // Trigger reflow
@@ -33,10 +32,34 @@ const enterFade = (el, done) => {
   el.style.opacity = 1;
   done();
 };
-
 const leaveFade = (el, done) => {
   // eslint-disable-next-line no-param-reassign
   el.style.transition = 'opacity .3s';
+  // eslint-disable-next-line no-param-reassign
+  el.style.opacity = 0;
+  el.addEventListener('transitionend', done);
+};
+
+const beforeEnterFadeSlow = (el) => {
+  // eslint-disable-next-line no-param-reassign
+  el.style.opacity = 0;
+};
+const enterFadeSlow = (el, done) => {
+  // eslint-disable-next-line no-unused-expressions
+  el.offsetHeight; // Trigger reflow
+  // eslint-disable-next-line no-param-reassign
+  el.style.transition = 'opacity .3s';
+  // eslint-disable-next-line no-param-reassign
+  el.style.transitionDelay = '.2s';
+  // eslint-disable-next-line no-param-reassign
+  el.style.opacity = 1;
+  done();
+};
+const leaveFadeSlow = (el, done) => {
+  // eslint-disable-next-line no-param-reassign
+  el.style.transition = 'opacity .3s';
+  // eslint-disable-next-line no-param-reassign
+  el.style.transitionDelay = '.1s';
   // eslint-disable-next-line no-param-reassign
   el.style.opacity = 0;
   el.addEventListener('transitionend', done);
@@ -46,7 +69,6 @@ const beforeEnterSlide = (el) => {
   // eslint-disable-next-line no-param-reassign
   el.style.transform = 'translateX(-100%)';
 };
-
 const enterSlide = (el, done) => {
   // eslint-disable-next-line no-unused-expressions
   el.offsetHeight; // Trigger reflow
@@ -56,7 +78,6 @@ const enterSlide = (el, done) => {
   el.style.transform = 'translateX(0)';
   done();
 };
-
 const leaveSlide = (el, done) => {
   // eslint-disable-next-line no-param-reassign
   el.style.transition = 'transform .3s';
@@ -72,6 +93,14 @@ const leaveSlide = (el, done) => {
   </transition>
   <transition name="slide" @before-enter="beforeEnterSlide" @enter="enterSlide" @leave="leaveSlide">
     <MenuMobile v-if="isMenuDisplayed" @toggleMenu="toggleMenu"/>
+  </transition>
+  <transition
+    name="fade_slow"
+    @before-enter="beforeEnterFadeSlow"
+    @enter="enterFadeSlow"
+    @leave="leaveFadeSlow"
+  >
+    <button class="overlay" v-if="isMenuDisplayed" @click="isMenuDisplayed = false"/>
   </transition>
 <header>
   <div class="buttons">
@@ -123,6 +152,15 @@ header {
     transform: translateX(-100%);
   }
 }
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  border: none;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
 /* CSS transitions */
 .fade-enter-active, .fade-leave-active {
   transition: opacity .3s;
@@ -137,5 +175,11 @@ header {
 
 .slide-enter, .slide-leave-to {
   transform: translateX(0);
+}
+.fade_slow-enter-active, .fade_slow-leave-active {
+  transition: opacity .3s;
+}
+.fade_slow-enter, .fade_slow-leave-to {
+  opacity: 0;
 }
 </style>
