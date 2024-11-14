@@ -21,6 +21,11 @@ const routes = [
     name: 'test',
     component: () => import('@/views/testView.vue'),
   },
+  {
+    path: '/admin',
+    name: 'admin',
+    component: () => import('@/views/AdminPanel.vue'),
+  },
 ];
 
 const router = createRouter({
